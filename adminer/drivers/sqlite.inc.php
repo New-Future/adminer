@@ -1,6 +1,6 @@
 <?php
 $drivers["sqlite"] = "SQLite 3";
-$drivers["sqlite2"] = "SQLite 2";
+// $drivers["sqlite2"] = "SQLite 2";
 
 if (isset($_GET["sqlite"]) || isset($_GET["sqlite2"])) {
 	$possible_drivers = array((isset($_GET["sqlite"]) ? "SQLite3" : "SQLite"), "PDO_SQLite");

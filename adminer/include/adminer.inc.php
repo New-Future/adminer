@@ -9,7 +9,7 @@ class Adminer {
 	* @return string HTML code
 	*/
 	function name() {
-		return "<a href='https://www.adminer.org/' target='_blank' id='h1'>Adminer</a>";
+		return "<a href='/adminer/' id='h1'>Adminer for YYF</a>";
 	}
 
 	/** Connection parameters
@@ -90,7 +90,7 @@ class Adminer {
 <table cellspacing="0">
 <tr><th><?php echo lang('System'); ?><td><?php echo html_select("auth[driver]", $drivers, DRIVER); ?>
 <tr><th><?php echo lang('Server'); ?><td><input name="auth[server]" value="<?php echo h(SERVER); ?>" title="hostname[:port]" placeholder="localhost" autocapitalize="off">
-<tr><th><?php echo lang('Username'); ?><td><input name="auth[username]" id="username" value="<?php echo h($_GET["username"]); ?>" autocapitalize="off">
+<tr><th><?php echo lang('Username'); ?><td><input name="auth[username]" id="username" value="<?php echo h($_GET["username"])?:'root'; ?>" autocapitalize="off">
 <tr><th><?php echo lang('Password'); ?><td><input type="password" name="auth[password]">
 <tr><th><?php echo lang('Database'); ?><td><input name="auth[db]" value="<?php echo h($_GET["db"]); ?>" autocapitalize="off">
 </table>
@@ -108,10 +108,10 @@ focus(document.getElementById('username'));
 	* @return mixed true for success, string for error message, false for unknown error
 	*/
 	function login($login, $password) {
-		global $jush;
-		if ($jush == "sqlite") {
-			return lang('Implement %s method to use SQLite.', 'login()');
-		}
+		// global $jush;
+		// if ($jush == "sqlite") {
+		// 	return lang('Implement %s method to use SQLite.', 'login()');
+		// }
 		return true;
 	}
 
@@ -779,7 +779,7 @@ focus(document.getElementById('username'));
 		global $VERSION, $jush, $drivers, $connection;
 		?>
 <h1>
-<?php echo $this->name(); ?> <span class="version"><?php echo $VERSION; ?></span>
+<?php echo $this->name(); ?> <span class="version">(<?php echo $VERSION; ?>)</span>
 <a href="https://www.adminer.org/#download" target="_blank" id="version"><?php echo (version_compare($VERSION, $_COOKIE["adminer_version"]) < 0 ? h($_COOKIE["adminer_version"]) : ""); ?></a>
 </h1>
 <?php
